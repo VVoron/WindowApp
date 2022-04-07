@@ -1,0 +1,16 @@
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.csproj.AssemblyReference.cache
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.Form1.resources
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.Properties.Resources.resources
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.csproj.GenerateResource.cache
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.csproj.CoreCompileInputs.cache
+C:\Users\79994\source\repos\WindowApp\WindowApp\bin\Debug\WindowApp.exe.config
+C:\Users\79994\source\repos\WindowApp\WindowApp\bin\Debug\WindowApp.exe
+C:\Users\79994\source\repos\WindowApp\WindowApp\bin\Debug\WindowApp.pdb
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.exe
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.pdb
+C:\Users\79994\source\repos\WindowApp\WindowApp\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\79994\source\repos\WindowApp\WindowApp\bin\Debug\Lucene.Net.dll
+C:\Users\79994\source\repos\WindowApp\WindowApp\bin\Debug\Lucene.Net.pdb
+C:\Users\79994\source\repos\WindowApp\WindowApp\bin\Debug\Lucene.Net.xml
+C:\Users\79994\source\repos\WindowApp\WindowApp\obj\Debug\WindowApp.csproj.CopyComplete
