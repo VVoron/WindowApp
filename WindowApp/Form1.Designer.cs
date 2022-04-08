@@ -38,6 +38,7 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.NameWind = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.WindowName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UserProcessorTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StartTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,7 +62,7 @@
             this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1013, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -119,6 +120,7 @@
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.NameWind,
+            this.WindowName,
             this.Memory,
             this.UserProcessorTime,
             this.StartTime,
@@ -132,7 +134,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 25);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(800, 425);
+            this.listView1.Size = new System.Drawing.Size(1013, 430);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -142,6 +144,11 @@
             // 
             this.NameWind.Text = "Название";
             this.NameWind.Width = 100;
+            // 
+            // WindowName
+            // 
+            this.WindowName.Text = "Название окна";
+            this.WindowName.Width = 200;
             // 
             // Memory
             // 
@@ -179,13 +186,14 @@
             this.завершитьToolStripMenuItem,
             this.завершитьДеревоПроцессовToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(239, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(239, 70);
             // 
             // завершитьToolStripMenuItem
             // 
             this.завершитьToolStripMenuItem.Name = "завершитьToolStripMenuItem";
             this.завершитьToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.завершитьToolStripMenuItem.Text = "Завершить";
+            this.завершитьToolStripMenuItem.Click += new System.EventHandler(this.завершитьToolStripMenuItem_Click);
             // 
             // завершитьДеревоПроцессовToolStripMenuItem
             // 
@@ -198,7 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1013, 455);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Form1";
@@ -230,6 +238,7 @@
         private System.Windows.Forms.ColumnHeader TotalProcessorTime;
         private System.Windows.Forms.ColumnHeader Priority;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ColumnHeader WindowName;
     }
 }
 

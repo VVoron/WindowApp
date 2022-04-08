@@ -27,7 +27,6 @@ C:\Users\79994\Documents\GitHub\WindowApp\WindowApp\bin\Debug\WindowApp.exe
 C:\Users\79994\Documents\GitHub\WindowApp\WindowApp\bin\Debug\WindowApp.pdb
 C:\Users\79994\Documents\GitHub\WindowApp\WindowApp\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\Users\79994\Documents\GitHub\WindowApp\WindowApp\bin\Debug\Lucene.Net.dll
-C:\Users\79994\Documents\GitHub\WindowApp\WindowApp\bin\Debug\WinAppDLL.dll
 C:\Users\79994\Documents\GitHub\WindowApp\WindowApp\bin\Debug\Lucene.Net.pdb
 C:\Users\79994\Documents\GitHub\WindowApp\WindowApp\bin\Debug\Lucene.Net.xml
 C:\Users\79994\Documents\GitHub\WindowApp\WindowApp\bin\Debug\WinAppDLL.pdb

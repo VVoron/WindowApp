@@ -19,7 +19,7 @@ namespace WindowApp
     {
         WinAppDLL.WinAppDLL dll = new WinAppDLL.WinAppDLL();
 
-        private List<Process> processes = null;
+        List<Process> processes = new List<Process>();
         public Form1()
         {
             InitializeComponent();
@@ -28,13 +28,15 @@ namespace WindowApp
         private void RefreshProcessesList()
         {
             listView1.Items.Clear();
+            processes.Clear();
 
+            var allProcess = dll.GetProcesses();
             double memory = 0;
             int WindowCount = 0;
-            foreach (Process proc in processes)
+            foreach (Process proc in allProcess)
             {
                 Console.WriteLine(proc.ToString());
-                if (proc.MainWindowHandle != IntPtr.Zero)
+                if (proc.MainWindowTitle.ToString() != "")
                 {
                     memory = 0;
                     WindowCount++;
@@ -45,30 +47,24 @@ namespace WindowApp
 
                     memory = (double)pc.NextValue() / (1024 * 1024);
 
-                    string[] row = new string[] { proc.ProcessName.ToString(), Math.Round(memory, 1).ToString(), proc.UserProcessorTime.ToString(), proc.StartTime.ToString(), proc.WorkingSet.ToString(), proc.TotalProcessorTime.ToString(), proc.BasePriority.ToString() };
+                    processes.Add(proc);
+                    string[] row = new string[] { proc.ProcessName.ToString(), proc.MainWindowTitle.ToString(), Math.Round(memory, 1).ToString(), proc.UserProcessorTime.ToString(),
+                        proc.StartTime.ToString(), proc.WorkingSet.ToString(), proc.TotalProcessorTime.ToString(), proc.BasePriority.ToString() };
                     listView1.Items.Add(new ListViewItem(row));
                     pc.Close();
                     pc.Dispose();
                 }
             }
-            Text = "Запущено процессов: " + WindowCount.ToString();
-        }
-
-        private void KillProcess(Process process)
-        {
-            process.Kill();
-            process.WaitForExit();
+            Text = "Запущено окон: " + WindowCount.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            processes = dll.GetProcesses();
             RefreshProcessesList();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            processes = dll.GetProcesses();
             RefreshProcessesList();
         }
 
@@ -80,8 +76,7 @@ namespace WindowApp
                 {
                     Process processToKill = processes.Where((x) => x.ProcessName == 
                     listView1.SelectedItems[0].SubItems[0].Text).ToList()[0];
-                    KillProcess(processToKill);
-                    processes = dll.GetProcesses();
+                    dll.KillProcess(processToKill);
                     RefreshProcessesList();
                 }
             }
@@ -97,7 +92,21 @@ namespace WindowApp
                     Process processToKill = processes.Where((x) => x.ProcessName ==
                     listView1.SelectedItems[0].SubItems[0].Text).ToList()[0];
                     dll.KillProcessAndChildren(dll.GetParentProcessId(processToKill));
-                    processes = dll.GetProcesses();
+                    RefreshProcessesList();
+                }
+            }
+            catch (Exception) { }
+        }
+
+        private void завершитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listView1.SelectedItems[0] != null)
+                {
+                    Process processToKill = processes.Where((x) => x.ProcessName ==
+                    listView1.SelectedItems[0].SubItems[0].Text).ToList()[0];
+                    dll.KillProcess(processToKill);
                     RefreshProcessesList();
                 }
             }
@@ -126,18 +135,6 @@ namespace WindowApp
 
 
         //Для свертывания/развертывания окна
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowPlacement(IntPtr hWnd, ref Windowplacement lpwndpl);
-        public struct Windowplacement
-        {
-            public int length;
-            public int flags;
-            public int showCmd;
-            public System.Drawing.Point ptMinPosition;
-            public System.Drawing.Point ptMaxPosition;
-            public System.Drawing.Rectangle rcNormalPosition;
-        }
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             try
@@ -146,18 +143,8 @@ namespace WindowApp
                 {
                     Process processToMinOrMax = processes.Where((x) => x.ProcessName ==
                     listView1.SelectedItems[0].SubItems[0].Text).ToList()[0];
-                    Windowplacement placement = new Windowplacement();
-                    GetWindowPlacement(processToMinOrMax.MainWindowHandle, ref placement);
 
-                    if (placement.showCmd == 2)
-                    {
-                        WinAppDLL.WinAppDLL.WinAPI.ShowWindow(processToMinOrMax.MainWindowHandle, WinAppDLL.WinAppDLL.WinAPI.Consts.SHOWWINDOW.SW_SHOWMAXIMIZED);
-                    }
-                    else
-                    {
-                        WinAppDLL.WinAppDLL.WinAPI.ShowWindow(processToMinOrMax.MainWindowHandle, WinAppDLL.WinAppDLL.WinAPI.Consts.SHOWWINDOW.SW_SHOWMINIMIZED);
-                    }
-                    WinAppDLL.WinAppDLL.WinAPI.SetForegroundWindow(processToMinOrMax.MainWindowHandle);
+                    dll.MaximizOrMinimiz(processToMinOrMax);
                 }
             }
             catch (Exception) { }
@@ -176,8 +163,8 @@ namespace WindowApp
                 {
                     Process processRename = processes.Where((x) => x.ProcessName ==
                     listView1.SelectedItems[0].SubItems[0].Text).ToList()[0];
-                    string rename = Interaction.InputBox("Введите новое название: ", "Переименование", processRename.ProcessName);
-                    SetWindowText(processRename.MainWindowHandle, rename);  
+                    dll.Rename(processRename);
+                    RefreshProcessesList();
                 }
             }
             catch (Exception) { }
